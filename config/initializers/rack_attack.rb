@@ -7,7 +7,7 @@ class Rack::Attack
   end
 
   # レートリミットを超えたリクエストに対する応答をカスタマイズ
-  self.throttled_response = lambda do |env|
+  self.throttled_responder = lambda do |env|
     retry_after = (env['rack.attack.match_data'] || {})[:period]
     [
       429,
