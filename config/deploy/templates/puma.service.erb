@@ -1,0 +1,17 @@
+[Unit]
+Description=Puma HTTP Server for <%= fetch(:application) %>
+After=network.target
+
+[Service]
+Type=simple
+User=<%= fetch(:user) %>
+WorkingDirectory=<%= fetch(:deploy_to) %>/current
+Environment=USING_WEB_SERVER=true
+ExecStart=/bin/bash -lc 'bundle exec puma -C /var/www/honey_pot/shared/puma.rb'
+ExecStop=/bin/bash -lc 'bundle exec pumactl -S /var/www/honey_pot/shared/tmp/pids/puma.state stop'ExecReload=/bin/kill -TSTP $MAINPID
+StandardOutput=append:<%= fetch(:deploy_to) %>/shared/log/puma_access.log
+StandardError=append:<%= fetch(:deploy_to) %>/shared/log/puma_error.log
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
