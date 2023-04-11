@@ -1,6 +1,11 @@
 class Rack::Attack
   Rack::Attack.cache.store = ActiveSupport::Cache::MemoryStore.new
 
+  safelist('allow-trusted-ips') do |req|
+    trusted_ips = []
+    trusted_ips.include?(req.ip)
+  end
+
   # 許可されるリクエストを制限する
   throttle('requests/ip', limit: 10, period: 1.minute) do |req|
     req.ip
