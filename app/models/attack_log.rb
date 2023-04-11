@@ -1,0 +1,2 @@
+class AttackLog < ApplicationRecord
+end

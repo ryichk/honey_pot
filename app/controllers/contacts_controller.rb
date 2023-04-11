@@ -33,6 +33,7 @@ class ContactsController < ApplicationController
 
   def log_honeypot
     Rails.logger.info("Honeypot triggered at #{Time.now.utc}. IP address: #{request.remote_ip}")
+    AttackLog.create(ip_address: request.remote_ip, trap_triggered_at: DateTime.now)
   end
 
   def send_alert
