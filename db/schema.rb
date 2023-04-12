@@ -12,13 +12,13 @@
 
 ActiveRecord::Schema.define(version: 2023_04_11_165620) do
 
-  create_table "active_admin_comments", force: :cascade do |t|
+  create_table "active_admin_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
     t.string "resource_type"
-    t.integer "resource_id"
+    t.bigint "resource_id"
     t.string "author_type"
-    t.integer "author_id"
+    t.bigint "author_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2023_04_11_165620) do
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource"
   end
 
-  create_table "admin_users", force: :cascade do |t|
+  create_table "admin_users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -38,14 +38,14 @@ ActiveRecord::Schema.define(version: 2023_04_11_165620) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "attack_logs", force: :cascade do |t|
+  create_table "attack_logs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "ip_address"
     t.datetime "trap_triggered_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "contacts", force: :cascade do |t|
+  create_table "contacts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.text "message"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2023_04_11_165620) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "ip_lists", force: :cascade do |t|
+  create_table "ip_lists", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "ip_address"
     t.string "list_type"
     t.datetime "created_at", precision: 6, null: false
